@@ -30,6 +30,9 @@ protected:
 	UPROPERTY(VisibleAnywhere);
 	UCameraComponent* CameraComp;
 
+	// 角色前向移动
+	void MoveForward(float value);
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

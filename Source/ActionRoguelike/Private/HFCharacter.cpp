@@ -25,6 +25,11 @@ void AHFCharacter::BeginPlay()
 	
 }
 
+void AHFCharacter::MoveForward(float value)
+{
+	AddMovementInput(GetActorForwardVector(), value);
+}
+
 // Called every frame
 void AHFCharacter::Tick(float DeltaTime)
 {
@@ -37,5 +42,10 @@ void AHFCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+	// 为角色输入组件绑定输入轴MoveForward，实现前后移动功能
+	PlayerInputComponent->BindAxis("MoveForward", this, &AHFCharacter::MoveForward);
+
+	// 为角色组件绑定输入轴Turn，实现转向功能
+	PlayerInputComponent->BindAxis("Turn", this, &APawn::AddControllerYawInput);
 }
 
