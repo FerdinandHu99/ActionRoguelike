@@ -6,6 +6,9 @@
 #include "GameFramework/Character.h"
 #include "HFCharacter.generated.h"
 
+class USpringArmComponent;
+class UCameraComponent;
+
 UCLASS()
 class ACTIONROGUELIKE_API AHFCharacter : public ACharacter
 {
@@ -18,6 +21,14 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
+	// 为角色增加一个弹簧臂组件
+	UPROPERTY(VisibleAnywhere);
+	USpringArmComponent* SpringArmComp;
+
+	// 为角色增加一个摄像头组件
+	UPROPERTY(VisibleAnywhere);
+	UCameraComponent* CameraComp;
 
 public:	
 	// Called every frame
