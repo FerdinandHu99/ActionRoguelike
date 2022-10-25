@@ -75,3 +75,6 @@ DerivedDataCache/*
 
 # ignore AdditionalContent
 Content/ParagonSunWukong/*
+
+# ignore Content/ActionRoguelike/Textures
+Content/ActionRoguelike/Textures/*
