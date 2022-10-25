@@ -4,6 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "GameFramework/SpringArmComponent.h"
+#include "Camera/CameraComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
+#include "Logging/LogMacros.h"
 #include "HFCharacter.generated.h"
 
 class USpringArmComponent;
@@ -16,7 +20,23 @@ class ACTIONROGUELIKE_API AHFCharacter : public ACharacter
 
 public:
 	// Sets default values for this character's properties
-	AHFCharacter();
+	// Sets default values
+	AHFCharacter()
+	{
+		// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+		PrimaryActorTick.bCanEverTick = true;
+
+		SpringArmComp = CreateDefaultSubobject<USpringArmComponent>("SpringArmComp");
+		SpringArmComp->SetupAttachment(RootComponent);
+		SpringArmComp->bUsePawnControlRotation = true;
+
+		CameraComp = CreateDefaultSubobject<UCameraComponent>("CameraComp");
+		CameraComp->SetupAttachment(SpringArmComp);
+
+		GetCharacterMovement()->bOrientRotationToMovement = true;
+
+		bUseControllerRotationYaw = false;
+	}
 
 protected:
 	// Called when the game starts or when spawned
@@ -32,6 +52,9 @@ protected:
 
 	// 角色前向移动
 	void MoveForward(float value);
+
+	// 角色左右移动
+	void MoveRight(float value);
 
 public:	
 	// Called every frame
