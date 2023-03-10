@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Camera/CameraComponent.h"
+#include "GameFramework/SpringArmComponent.h"
 #include "HuCharacter.generated.h"
 
 UCLASS()
@@ -16,6 +18,12 @@ public:
 	AHuCharacter();
 
 protected:
+	UPROPERTY(VisibleAnywhere)
+	UCameraComponent* CameraComp; // 摄像机组件
+
+	UPROPERTY(VisibleAnywhere)
+	USpringArmComponent* SpringArmComp; //弹簧臂组件
+
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
