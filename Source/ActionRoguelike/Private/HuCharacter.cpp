@@ -15,6 +15,11 @@ AHuCharacter::AHuCharacter()
 	CameraComp->SetupAttachment(SpringArmComp);
 
 }
+// 输入轴MoveForward绑定的函数
+void AHuCharacter::MoveForward(float value)
+{
+	AddMovementInput(GetActorForwardVector(), value);
+}
 
 // Called when the game starts or when spawned
 void AHuCharacter::BeginPlay()
@@ -35,5 +40,8 @@ void AHuCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+	// 移动组件绑定输入轴MoveForward、Turn
+	PlayerInputComponent->BindAxis("MoveForward", this, &AHuCharacter::MoveForward);
+	PlayerInputComponent->BindAxis("Turn", this, &APawn::AddControllerYawInput);
 }
 

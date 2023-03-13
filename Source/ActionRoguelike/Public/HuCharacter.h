@@ -24,6 +24,9 @@ protected:
 	UPROPERTY(VisibleAnywhere)
 	USpringArmComponent* SpringArmComp; //弹簧臂组件
 
+	// 往前后移动
+	void MoveForward(float value);
+	
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
